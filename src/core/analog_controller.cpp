@@ -837,7 +837,7 @@ static const SettingInfo s_settings[] = {
   {SettingInfo::Type::Boolean, "ForceAnalogOnReset", TRANSLATABLE("AnalogController", "Force Analog Mode on Reset"),
    TRANSLATABLE("AnalogController", "Forces the controller to analog mode when the console is reset/powered on. May "
                                     "cause issues with games, so it is recommended to leave this option off."),
-   "true"},
+   "false"},
   {SettingInfo::Type::Boolean, "AnalogDPadInDigitalMode",
    TRANSLATABLE("AnalogController", "Use Analog Sticks for D-Pad in Digital Mode"),
    TRANSLATABLE("AnalogController",
@@ -881,7 +881,7 @@ const Controller::ControllerInfo AnalogController::INFO = {ControllerType::Analo
 void AnalogController::LoadSettings(SettingsInterface& si, const char* section)
 {
   Controller::LoadSettings(si, section);
-  m_force_analog_on_reset = si.GetBoolValue(section, "ForceAnalogOnReset", true);
+  m_force_analog_on_reset = si.GetBoolValue(section, "ForceAnalogOnReset", false);
   m_analog_dpad_in_digital_mode = si.GetBoolValue(section, "AnalogDPadInDigitalMode", true);
   m_analog_deadzone = std::clamp(si.GetFloatValue(section, "AnalogDeadzone", DEFAULT_STICK_DEADZONE), 0.0f, 1.0f);
   m_analog_sensitivity =
